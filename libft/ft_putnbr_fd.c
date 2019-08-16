@@ -1,20 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oorlov <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/31 16:23:20 by oorlov            #+#    #+#             */
-/*   Updated: 2019/07/31 16:23:21 by oorlov           ###   ########.fr       */
+/*   Created: 2018/11/03 19:58:01 by oorlov            #+#    #+#             */
+/*   Updated: 2018/11/03 19:58:04 by oorlov           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <stdio.h>
+#include "libft.h"
 
-int		main(void)
+void	ft_putnbr_fd(int n, int fd)
 {
-	printf("%ld %ld \n", 111111111111, 111111111111);
-	ft_printf("%f %f \n", 111111111111, 111111111111);
+	if (n < -9 || n > 9)
+		ft_putnbr_fd(n / 10, fd);
+	if (n < 0)
+	{
+		if (n >= -9)
+		{
+			ft_putchar_fd('-', fd);
+		}
+		ft_putchar_fd('0' - (n % 10), fd);
+	}
+	else
+		ft_putchar_fd('0' + (n % 10), fd);
 }

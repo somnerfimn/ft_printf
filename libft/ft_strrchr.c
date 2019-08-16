@@ -1,20 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oorlov <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/31 16:23:20 by oorlov            #+#    #+#             */
-/*   Updated: 2019/07/31 16:23:21 by oorlov           ###   ########.fr       */
+/*   Created: 2018/10/30 14:19:44 by oorlov            #+#    #+#             */
+/*   Updated: 2018/10/30 14:19:48 by oorlov           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <stdio.h>
+#include "libft.h"
 
-int		main(void)
+char	*ft_strrchr(const char *str, int ch)
 {
-	printf("%ld %ld \n", 111111111111, 111111111111);
-	ft_printf("%f %f \n", 111111111111, 111111111111);
+	char	*string;
+	int		count;
+
+	count = ft_strlen(str);
+	string = (char *)str;
+	while (string[count] != ch)
+	{
+		if (count == 0)
+			return (NULL);
+		count--;
+	}
+	return (&string[count]);
 }

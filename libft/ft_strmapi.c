@@ -1,20 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oorlov <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/31 16:23:20 by oorlov            #+#    #+#             */
-/*   Updated: 2019/07/31 16:23:21 by oorlov           ###   ########.fr       */
+/*   Created: 2018/11/03 16:37:16 by oorlov            #+#    #+#             */
+/*   Updated: 2018/11/03 16:37:17 by oorlov           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <stdio.h>
+#include "libft.h"
 
-int		main(void)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	printf("%ld %ld \n", 111111111111, 111111111111);
-	ft_printf("%f %f \n", 111111111111, 111111111111);
+	int		count;
+	char	*dst;
+
+	count = 0;
+	if (!s)
+		return (NULL);
+	dst = ft_strnew(ft_strlen(s));
+	if (!dst)
+		return (NULL);
+	while (s[count] != '\0')
+	{
+		dst[count] = f(count, s[count]);
+		count++;
+	}
+	return (dst);
 }

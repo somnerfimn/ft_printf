@@ -1,20 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oorlov <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/31 16:23:20 by oorlov            #+#    #+#             */
-/*   Updated: 2019/07/31 16:23:21 by oorlov           ###   ########.fr       */
+/*   Created: 2018/10/29 12:54:13 by oorlov            #+#    #+#             */
+/*   Updated: 2018/10/29 12:54:16 by oorlov           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <stdio.h>
+#include "libft.h"
 
-int		main(void)
+char	*ft_strncpy(char *dest, const char *src, size_t n)
 {
-	printf("%ld %ld \n", 111111111111, 111111111111);
-	ft_printf("%f %f \n", 111111111111, 111111111111);
+	size_t	len;
+	size_t	i;
+
+	i = 0;
+	len = ft_strlen((char*)src);
+	while (i < n)
+	{
+		if (i > len)
+			dest[i] = '\0';
+		else
+			dest[i] = src[i];
+		i++;
+	}
+	return (dest);
 }

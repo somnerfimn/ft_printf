@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memalloc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oorlov <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/31 16:23:20 by oorlov            #+#    #+#             */
-/*   Updated: 2019/07/31 16:23:21 by oorlov           ###   ########.fr       */
+/*   Created: 2018/10/31 13:36:53 by oorlov            #+#    #+#             */
+/*   Updated: 2018/10/31 13:36:54 by oorlov           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <stdio.h>
+#include "libft.h"
 
-int		main(void)
+void	*ft_memalloc(size_t size)
 {
-	printf("%ld %ld \n", 111111111111, 111111111111);
-	ft_printf("%f %f \n", 111111111111, 111111111111);
+	char	*str;
+
+	str = (char *)malloc((size + 1) * sizeof(char));
+	if (!str || size > 1024 * 1024)
+		return (NULL);
+	ft_bzero(str, size);
+	str[size + 1] = '\0';
+	return (str);
 }

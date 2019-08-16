@@ -1,20 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oorlov <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/31 16:23:20 by oorlov            #+#    #+#             */
-/*   Updated: 2019/07/31 16:23:21 by oorlov           ###   ########.fr       */
+/*   Created: 2018/10/28 17:01:26 by oorlov            #+#    #+#             */
+/*   Updated: 2018/10/28 17:01:27 by oorlov           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <stdio.h>
+#include "libft.h"
 
-int		main(void)
+char	*ft_strdup(const char *str)
 {
-	printf("%ld %ld \n", 111111111111, 111111111111);
-	ft_printf("%f %f \n", 111111111111, 111111111111);
+	int		len;
+	char	*dup;
+
+	len = ft_strlen(str);
+	dup = (char *)malloc((len + 1) * sizeof(*str));
+	if (!dup)
+		return (NULL);
+	len = 0;
+	while (str[len] != '\0')
+	{
+		dup[len] = str[len];
+		len++;
+	}
+	dup[len] = '\0';
+	return (dup);
 }

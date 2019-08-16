@@ -1,20 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oorlov <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/31 16:23:20 by oorlov            #+#    #+#             */
-/*   Updated: 2019/07/31 16:23:21 by oorlov           ###   ########.fr       */
+/*   Created: 2018/11/03 17:10:27 by oorlov            #+#    #+#             */
+/*   Updated: 2018/11/03 17:10:28 by oorlov           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <stdio.h>
+#include "libft.h"
 
-int		main(void)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	printf("%ld %ld \n", 111111111111, 111111111111);
-	ft_printf("%f %f \n", 111111111111, 111111111111);
+	char	*dest;
+	int		count;
+	int		i;
+
+	if (!s1 || !s2)
+		return (NULL);
+	count = 0;
+	i = 0;
+	dest = ft_strnew(ft_strlen(s1) + ft_strlen(s2));
+	if (!dest)
+		return (NULL);
+	while (s1[i] != '\0')
+		dest[count++] = s1[i++];
+	i = 0;
+	while (s2[i] != '\0')
+		dest[count++] = s2[i++];
+	dest[count] = '\0';
+	return (dest);
 }

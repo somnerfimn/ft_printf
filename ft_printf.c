@@ -5,44 +5,49 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: oorlov <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/24 11:27:07 by oorlov            #+#    #+#             */
-/*   Updated: 2019/07/24 11:27:09 by oorlov           ###   ########.fr       */
+/*   Created: 2019/07/31 03:46:49 by oorlov            #+#    #+#             */
+/*   Updated: 2019/07/31 03:46:50 by oorlov           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int				count_flag(char *format)
+static void		main_buffer(char *format, va_list params, int *printed)
 {
-	int			count;
-	int			result;
+	int		i;
+	t_buff	*p_buff;
 
-	count = 0;
-	result = 0;
-	while (format[count])
-		if(format[count++] == '%')
-			result++;
-	return (result);
+	i = 0;
+	while (format[i])
+	{
+		if (format[i] == '%')
+		{
+			if (!(p_buff = percent_buffer(format + i, params)))
+				return ;
+			write(1, p_buff->buff, p_buff->buff_size);
+			*printed += p_buff->buff_size;
+			i += p_buff->arg_offset;
+			free_buff(p_buff);
+		}
+		else
+		{
+			ft_putchar(format[i]);
+			*printed += 1;
+		}
+		i++;
+	}
 }
 
-int				ft_printf(char *format, ...)
+int				ft_printf(const char *restrict format, ...)
 {
-	va_list		ap;
-	int			d;
-	char		*p;
+	va_list		params;
+	int			printed;
+	char		*f;
 
-	va_start(ap, format);
-	printf("%d\n", count_flag(format));
-	if(format[0] == '%' && format[1] == 'd')
-	{
-		d = va_arg(ap, int);
-		printf("%s\n", "this is decimal");
-	}
-	if(format[0] == '%' && format[1] == 's')
-	{
-		p = va_arg(ap, char *);
-		printf("%s\n", p);
-	}
-	va_end(ap);
-	return (0);
+	f = (char *)format;
+	va_start(params, format);
+	printed = 0;
+	main_buffer(f, params, &printed);
+	va_end(params);
+	return (printed);
 }

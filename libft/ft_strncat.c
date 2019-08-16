@@ -1,20 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strncat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oorlov <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/31 16:23:20 by oorlov            #+#    #+#             */
-/*   Updated: 2019/07/31 16:23:21 by oorlov           ###   ########.fr       */
+/*   Created: 2018/10/29 19:48:19 by oorlov            #+#    #+#             */
+/*   Updated: 2018/10/29 19:48:24 by oorlov           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <stdio.h>
+#include "libft.h"
 
-int		main(void)
+char	*ft_strncat(char *dest, const char *src, size_t len)
 {
-	printf("%ld %ld \n", 111111111111, 111111111111);
-	ft_printf("%f %f \n", 111111111111, 111111111111);
+	int		count1;
+	int		count2;
+
+	count1 = 0;
+	count2 = 0;
+	while (dest[count1] != '\0')
+		count1++;
+	while (src[count2] != '\0' && count2 < (int)len)
+	{
+		dest[count1] = src[count2];
+		count2++;
+		count1++;
+	}
+	dest[count1] = '\0';
+	return (dest);
 }

@@ -1,20 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oorlov <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/31 16:23:20 by oorlov            #+#    #+#             */
-/*   Updated: 2019/07/31 16:23:21 by oorlov           ###   ########.fr       */
+/*   Created: 2018/10/28 12:44:29 by oorlov            #+#    #+#             */
+/*   Updated: 2018/10/28 12:44:30 by oorlov           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <stdio.h>
+#include "libft.h"
 
-int		main(void)
+void	*ft_memcpy(void *destination, const void *source, size_t len)
 {
-	printf("%ld %ld \n", 111111111111, 111111111111);
-	ft_printf("%f %f \n", 111111111111, 111111111111);
+	unsigned char	*dst;
+	unsigned char	*src;
+
+	dst = (unsigned char *)destination;
+	src = (unsigned char *)source;
+	if (dst <= src || dst >= (src + len))
+	{
+		while (len--)
+			*dst++ = *src++;
+	}
+	else
+	{
+		dst += len - 1;
+		src += len - 1;
+		while (len--)
+			*dst-- = *src--;
+	}
+	return (destination);
 }
